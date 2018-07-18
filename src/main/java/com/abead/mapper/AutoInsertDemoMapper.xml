@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abead.mapper.AutoInsertDemoMapper">
+   <insert id="autoInsertDemo">
+          insert  into s1 values
+          <foreach collection="data" item="item" index="index" separator=",">
+              (
+                 #{item.id},
+                 #{item.name},
+                 #{item.gender},
+                 #{item.email}
+              )
+          </foreach>
+   </insert>
+</mapper>

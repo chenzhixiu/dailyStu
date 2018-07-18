@@ -1,0 +1,169 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+
+  <display-name>tomcatStu</display-name>
+
+  <listener>
+    <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>ShiroFilter</filter-name>
+    <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+  </filter>
+
+  <servlet>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>com.abead.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>validCode</servlet-name>
+    <servlet-class>com.abead.servlet.ValidCodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>testFreemaker</servlet-name>
+    <servlet-class>com.abead.servlet.TestFreemaker</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>count</servlet-name>
+    <servlet-class>com.abead.CountServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>sessionTest</servlet-name>
+    <servlet-class>com.abead.SessionSopeTest</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AddCustomer</servlet-name>
+    <servlet-class>com.abead.servlet.AddCustomer</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CustomerQuery</servlet-name>
+    <servlet-class>com.abead.servlet.CustomerQuery</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CustomerUpd</servlet-name>
+    <servlet-class>com.abead.servlet.CustomerUpd</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DelCustomer</servlet-name>
+    <servlet-class>com.abead.servlet.DelCustomer</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindCustomerById</servlet-name>
+    <servlet-class>com.abead.servlet.FindCustomerById</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>freemarker</servlet-name>
+    <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
+
+    <!-- FreemarkerServlet settings: -->
+    <init-param>
+      <param-name>TemplatePath</param-name>
+      <param-value>/</param-value>
+    </init-param>
+    <init-param>
+      <param-name>NoCache</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>ContentType</param-name>
+      <param-value>text/html; charset=UTF-8</param-value> <!-- Forces UTF-8 output encoding! -->
+    </init-param>
+
+    <!-- FreeMarker settings: -->
+    <init-param>
+      <param-name>incompatible_improvements</param-name>
+      <param-value>2.3.22</param-value>
+      <!-- Recommended to set to a high value. For the details, see the Java API docs of
+           freemarker.template.Configuration#Configuration(Version). -->
+    </init-param>
+    <init-param>
+      <param-name>template_exception_handler</param-name>
+      <!-- Use "html_debug" instead during development! -->
+      <param-value>rethrow</param-value>
+    </init-param>
+    <init-param>
+      <param-name>template_update_delay</param-name>
+      <!-- ATTENTION, 0 is for development only! Use higher value otherwise. -->
+      <param-value>0</param-value>
+    </init-param>
+    <init-param>
+      <param-name>default_encoding</param-name>
+      <!-- The encoding of the template files. -->
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>testMybatis</servlet-name>
+    <servlet-class>com.abead.servlet.TestMybatis</servlet-class>
+  </servlet>
+  <filter-mapping>
+    <filter-name>ShiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet-mapping>
+    <servlet-name>count</servlet-name>
+    <url-pattern>/count</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>sessionTest</servlet-name>
+    <url-pattern>/sessionTest</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AddCustomer</servlet-name>
+    <url-pattern>/AddCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerQuery</servlet-name>
+    <url-pattern>/CustomerQuery</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerUpd</servlet-name>
+    <url-pattern>/CustomerUpd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelCustomer</servlet-name>
+    <url-pattern>/DelCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindCustomerById</servlet-name>
+    <url-pattern>/FindCustomerById</url-pattern>
+  </servlet-mapping>
+  <!--freemaker demo-->
+  <servlet-mapping>
+    <servlet-name>freemarker</servlet-name>
+    <url-pattern>*.ftl</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>testFreemaker</servlet-name>
+    <url-pattern>/testFreemaker</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>testMybatis</servlet-name>
+    <url-pattern>/testMybatis</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/loginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>validCode</servlet-name>
+    <url-pattern>/validCode</url-pattern>
+  </servlet-mapping>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>FreeMarker MVC Views</web-resource-name>
+      <url-pattern>*.ftl</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <!-- Nobody is allowed to visit these directly. -->
+    </auth-constraint>
+  </security-constraint>
+
+</web-app>

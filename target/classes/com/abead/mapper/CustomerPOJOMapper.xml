@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abead.mapper.CustomerPOJOMapper">
+    <cache/>
+    <resultMap id="customerMap" type="Customer">
+        <id property="id" column="id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="customerName" column="customer_name"/>
+        <result property="customerSex" column="customer_sex"/>
+        <result property="customerTel" column="customer_tel"/>
+        <result property="customerAdress" column="customer_adress"/>
+        <result property="customerProId" column="customer_pro_id"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="roleMark" column="role_mark"/>
+
+    </resultMap>
+    <select id="selectBlog" resultMap="customerMap" flushCache="true">
+        select * from customer where id = #{id}
+    </select>
+
+    <select id="selectCount" resultType="long">
+        select count(1) from customer
+    </select>
+
+    <select id="selectMaxId" resultType="_long">
+        select if(max(id) IS NULL ,1,max(id)) from customer;
+    </select>
+
+    <insert id="insertCustomer" parameterType="Customer" flushCache="false">
+        <selectKey keyProperty="customer.id" resultType="long">
+            SELECT if(max(id) IS NULL,1,max(id)) as newId FROM customer;
+        </selectKey>
+        INSERT INTO customer (
+              customer_id,
+              customer_name,
+              password,
+              customer_sex,
+              customer_tel,
+              customer_adress,
+              customer_pro_id,
+              is_delete,
+              role_mark
+          ) VALUES (
+               #{customer.customerId},
+               #{customer.customerName},
+               #{customer.password},
+               #{customer.customerSex},
+               #{customer.customerTel},
+               #{customer.customerAdress},
+               #{customer.customerProId},
+               #{customer.isDelete},
+               #{customer.roleMark}
+          );
+    </insert>
+
+</mapper>
