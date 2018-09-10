@@ -1152,10 +1152,10 @@ public class JedisUtil {
    }
     public static void main(String[] args) {
         A a = new A("chenzhixiu","宿州");
-        A a1 = new A("杨雪晴","宿州");
-        A a2 = new A("chenxuefa","宿州");
-        A a3 = new A("tangguochun","宿州");
-        A a4 = new A("weilai","宿州");
+        A a1 = new A("fgerv","宿州");
+        A a2 = new A("feverv","宿州");
+        A a3 = new A("wegvr","宿州");
+        A a4 = new A("ertgerg","宿州");
         Map<String,A> map = new HashMap<>();
         map.put("a",a);
         map.put("a1",a1);
@@ -1179,10 +1179,10 @@ public class JedisUtil {
       /*  List 集合
         List<A> aList = new ArrayList<>();
         A a = new A("chenzhixiu","宿州");
-        A a1 = new A("杨雪晴","宿州");
-        A a2 = new A("chenxuefa","宿州");
-        A a3 = new A("tangguochun","宿州");
-        A a4 = new A("weilai","宿州");
+        A a1 = new A("qwqe","宿州");
+        A a2 = new A("34ref","宿州");
+        A a3 = new A("dfdf","宿州");
+        A a4 = new A("sfdfer","宿州");
         aList.add(a);
         aList.add(a1);
         aList.add(a2);
